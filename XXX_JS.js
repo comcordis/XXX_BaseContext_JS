@@ -89,6 +89,7 @@ var XXX_JS =
 	
 	errorNotification: function (errorCode, errorMessage, errorFile, errorLine)
 	{
+		errorMessage = ('' + errorMessage);
 		errorMessage = errorMessage.replace('<', '&lt;').replace('>', '&gt;');
 		
 		var error =
