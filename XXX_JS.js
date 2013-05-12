@@ -70,9 +70,15 @@ var XXX_JS =
 				return true;
 			};
 			
-			if ((console && console.log) || (window && window.console && window.console.log))
+			try
 			{
-				this.hasConsole = true;
+				if ((console && console.log) || (window && window.console && window.console.log))
+				{
+					this.hasConsole = true;
+				}
+			}
+			catch (tempError)
+			{
 			}
 		}
 		
