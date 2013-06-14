@@ -67,7 +67,7 @@ var XXX_JS =
 				XXX_JS.errorNotification(0, errorMessage, errorFile, errorLine);
 				
 				// Suppress native error alerts
-				return true;
+				return false;
 			};
 			
 			try
