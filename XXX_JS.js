@@ -91,6 +91,24 @@ var XXX_JS =
 			
 			this.elements.debugOutput = debugOutput;
 		}
+		
+		var liveDebugOutput = document.getElementById('liveDebugOutput');
+		
+		if (liveDebugOutput)
+		{
+			this.elements.liveDebugOutput = liveDebugOutput;
+		}
+	},
+	
+	liveDebugOutput: function (output)
+	{
+		if (this.debug)
+		{
+			if (this.elements.liveDebugOutput)
+			{
+				this.elements.liveDebugOutput.innerHTML = output;
+			}
+		}
 	},
 	
 	errorNotification: function (errorCode, errorMessage, errorFile, errorLine)
@@ -108,45 +126,48 @@ var XXX_JS =
 		
 		this.notifications.errors.push(error);
 		
-		var errorOutput = 'JS:';
-		errorOutput += ' [Code: ' + error.code + ']';
-		
-		var tempDate = new Date();
-		errorOutput += ' (Timestamp: ' + tempDate.getMilliseconds() + ')' + "\r\n"; 
-		
-		errorOutput += error.message + "\r\n";
-		if (error.file)
+		if (this.debug)
 		{
-			errorOutput += 'File: ' + error.file + "\r\n";
-		}
-		if (error.line)
-		{
-			errorOutput += 'Line: ' + error.line + "\r\n";
-		}
-		
-		if (this.elements.debugOutput)
-		{
-			if (XXX_DOM)
+			var errorOutput = 'JS:';
+			errorOutput += ' [Code: ' + error.code + ']';
+			
+			var tempDate = new Date();
+			errorOutput += ' (Timestamp: ' + tempDate.getMilliseconds() + ')' + "\r\n"; 
+			
+			errorOutput += error.message + "\r\n";
+			if (error.file)
 			{
-				this.elements.debugOutput.innerHTML += this.ruler + "\r\n" + errorOutput;
-				var parent = XXX_DOM.getParent(this.elements.debugOutput);
-				
-				if (parent)
+				errorOutput += 'File: ' + error.file + "\r\n";
+			}
+			if (error.line)
+			{
+				errorOutput += 'Line: ' + error.line + "\r\n";
+			}
+			
+			if (this.elements.debugOutput)
+			{
+				if (XXX_DOM)
 				{
-					parent.scrollTop = parent.scrollHeight;
+					this.elements.debugOutput.innerHTML += this.ruler + "\r\n" + errorOutput;
+					var parent = XXX_DOM.getParent(this.elements.debugOutput);
+					
+					if (parent)
+					{
+						parent.scrollTop = parent.scrollHeight;
+					}
 				}
 			}
-		}
-		else
-		{
-			if (error.code == 0)
+			else
 			{
-				if (this.hasConsole)
+				if (error.code == 0)
 				{
-					console.log(errorOutput);
+					if (this.hasConsole)
+					{
+						console.log(errorOutput);
+					}
+					
+					alert(errorOutput);
 				}
-				
-				alert(errorOutput);
 			}
 		}
 	}
