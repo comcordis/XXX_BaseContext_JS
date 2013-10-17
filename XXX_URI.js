@@ -36,7 +36,7 @@ var XXX_URI =
 		
 		if (this.additionalRoutePrefix != '' && !this.avoidAdditionalRoutePrefix)
 		{
-			$result += this.additionalRoutePrefix;
+			result += this.additionalRoutePrefix;
 		}
 		
 		if (XXX_Type.isArray(route))
