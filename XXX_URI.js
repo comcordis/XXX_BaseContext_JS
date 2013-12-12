@@ -44,7 +44,7 @@ var XXX_URI =
 			result += XXX_Array.joinValuesToString(route, '/');
 		}
 		else
-		{		
+		{
 			result += route;
 		}
 		
