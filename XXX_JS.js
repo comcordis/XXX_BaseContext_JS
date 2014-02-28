@@ -82,6 +82,14 @@ var XXX_JS =
 			}
 		}
 		
+		if (XXX_DOM_Ready)
+		{
+			for (var i = 0, iEnd = XXX_DOM_Ready.notifications.length; i < iEnd; ++i)
+			{
+				this.errorNotification(1, XXX_DOM_Ready.notifications[i]);
+			}
+		}
+		
 		var debugOutput = document.getElementById('debugOutput');
 		
 		if (debugOutput)
