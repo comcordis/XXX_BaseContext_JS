@@ -14,7 +14,7 @@ var XXX =
 	
 	debug: {},
 	
-	eventListeners: {};
+	eventListeners: {},
 	
 	dispatchEventToListeners: function (type, argument)
 	{
