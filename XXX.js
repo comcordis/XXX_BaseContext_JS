@@ -14,6 +14,29 @@ var XXX =
 	
 	debug: {},
 	
+	eventListeners: {};
+	
+	dispatchEventToListeners: function (type, argument)
+	{
+		if (this.eventListeners[type])
+		{
+			for (var i = 0, iEnd = this.eventListeners[type].length; i < iEnd; ++i)
+			{
+				(this.eventListeners[type][i])(argument);
+			}
+		}
+	},
+	
+	addEventListener: function (type, eventListener)
+	{
+		if (!this.eventListeners[type])
+		{
+			this.eventListeners[type] = [];
+		}
+		
+		this.eventListeners[type].push(eventListener);
+	},
+	
 	/*
 	
 	http://www.kevlindev.com/tutorials/javascript/inheritance/index.htm
@@ -81,5 +104,10 @@ var XXX =
 	createID: function ()
 	{
 		return 'XXX_ID_' + (++this.IDCounter);
+	},
+	
+	canLaunch: function ()
+	{
+		this.dispatchEventToListeners('launch');
 	}
 };
