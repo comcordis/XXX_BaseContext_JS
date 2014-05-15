@@ -108,6 +108,7 @@ var XXX =
 	
 	canLaunch: function ()
 	{
+		this.dispatchEventToListeners('beforeLaunch');
 		this.dispatchEventToListeners('launch');
 	}
 };
