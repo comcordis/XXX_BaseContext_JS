@@ -11,11 +11,30 @@ var XXX_URI =
 	
 	currentHTTPServerProtocolPrefix: '',
 	
-	composeRouteURI: function (route, subExecutionEnvironment, avoidAdditionalRoutePrefix)
+	composeRouteURI: function (route, subExecutionEnvironment, avoidAdditionalRoutePrefix, httpServerProtocolPrefix)
 	{
 		var result = '';
+				
+		if (!httpServerProtocolPrefix)
+		{
+			httpServerProtocolPrefix = 'current';
+		}
 		
-		result += this.currentHTTPServerProtocolPrefix;
+		switch (httpServerProtocolPrefix)
+		{
+			case 'current':
+				result += this.currentHTTPServerProtocolPrefix;
+				break;
+			case 'http':
+				result += 'http://';
+				break;
+			case 'https':
+				result += 'https://';
+				break;
+			default:
+				result += httpServerProtocolPrefix;
+				break;
+		}
 		
 		switch (subExecutionEnvironment)
 		{
@@ -34,7 +53,7 @@ var XXX_URI =
 				break;
 		}
 		
-		if (this.additionalRoutePrefix != '' && !this.avoidAdditionalRoutePrefix)
+		if (this.additionalRoutePrefix != '' && !avoidAdditionalRoutePrefix)
 		{
 			result += this.additionalRoutePrefix;
 		}
