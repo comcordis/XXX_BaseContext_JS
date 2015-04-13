@@ -1,0 +1,6 @@
+project:XXX_BaseContext_JS
+deployEnvironment:development
+checkout:master
+commitHash:66229360a50cca6a8c59ceed91049a99c844a893
+timestamp:2015-04-13T09:43:25Z
+deployer:operations
